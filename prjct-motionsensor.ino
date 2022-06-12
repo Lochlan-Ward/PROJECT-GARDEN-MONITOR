@@ -15,14 +15,12 @@ int led1 = D0;
 
 int ledOnboard = D7;  // The on-board LED
 
-// Transmission time
-String lastSendTime = "";
-
 
 // Variables - Motion sensor
 char activeMotion [] = "Active";
 char inactiveMotion [] = "Inactive";
 char* state ;
+
 
 void setup() {
     // some serial monitoring I used to set up and test the sensor with Argon, from the DHT file by user ladyada
@@ -37,8 +35,9 @@ void setup() {
 	pinMode(motionPin, INPUT);
 }
 
+// Read motion data and store it to variable
 void readMotion() {
-  //Read motion data and store it to variable
+
   if (digitalRead(motionPin) == HIGH) {
     state = activeMotion;
   }
@@ -47,8 +46,9 @@ void readMotion() {
   }
 }
 
+// Flash led lights, sound tone, looped 20 times for total alert time of 10 seconds
 void alert() {
-    // Flash led lights, sound tone, looped 20 times for total alert time of 10 seconds
+
     for (int i = 0; i <= 20; i ++) {
         // LED on
         digitalWrite(led1, HIGH);
